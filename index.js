@@ -59,8 +59,7 @@ app.use(express.static('public'));
 function checkCredentials(username, password) {
   // Perform username and password validation
   // Return true if the credentials are valid, false otherwise
-  return (username === 'admin' && password === 'password') ||
-    (username === 'specialuser' && password === 'specialpassword');
+  return (username === 'admin' && password === 'admin');
 }
 
 // Start the server
