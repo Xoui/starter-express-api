@@ -5,7 +5,6 @@ const path = require('path');
 const app = express();
 
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(
   session({
@@ -43,6 +42,9 @@ const authenticateMiddleware = (req, res, next) => {
 app.get('/index.html', authenticateMiddleware, (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
+
+// This must come after your routes that need authentication
+app.use(express.static(path.join(__dirname, 'public')));
 
 function checkCredentials(username, password) {
   return (username === 'admin' && password === 'admin');
