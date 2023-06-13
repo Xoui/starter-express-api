@@ -55,23 +55,6 @@ app.get('/index.html', authenticateMiddleware, (req, res) => {
 // Serve static files from the public folder
 app.use(express.static('public'));
 
-// Route to change session expiration
-app.post('/change-expiration', (req, res) => {
-  // Retrieve the username and password from the request body
-  const { username, password } = req.body;
-
-  // Check if the username and password match the specific user that can change the expiration
-  const canChangeExpiration = checkCredentials(username, password);
-
-  if (canChangeExpiration) {
-    const sessionDuration = parseInt(req.body.sessionDuration, 10); // Convert to an integer
-    const sessionExpirationTime = sessionDuration * 60 * 1000; // Convert minutes to milliseconds
-    req.session.cookie.expires = new Date(Date.now() + sessionExpirationTime);
-  }
-
-  res.redirect('/index.html'); // Redirect back to the index.html page
-});
-
 // Start the server
 app.listen(3000, () => {
   console.log('Server is running on port 3000');
@@ -84,21 +67,3 @@ function checkCredentials(username, password) {
   return (username === 'admin' && password === 'password') ||
     (username === 'specialuser' && password === 'specialpassword');
 }
-
-// Route to change session expiration
-app.post('/change-expiration', (req, res) => {
-  // Retrieve the username and password from the request body
-  const { username, password } = req.body;
-
-  // Check if the username and password match the specific user that can change the expiration
-  const canChangeExpiration = checkCredentials(username, password);
-
-  if (canChangeExpiration) {
-    // Prompt the user to enter the desired session duration
-    const sessionDuration = parseInt(prompt('Enter the desired session duration (in minutes):'), 10);
-    const sessionExpirationTime = sessionDuration * 60 * 1000; // Convert minutes to milliseconds
-    req.session.cookie.expires = new Date(Date.now() + sessionExpirationTime);
-  }
-
-  res.redirect('/index.html'); // Redirect back to the index.html page
-});
