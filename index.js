@@ -31,7 +31,7 @@ app.post('/login', (req, res) => {
   if (isAuthenticated) {
     // Set a flag in the session indicating successful authentication
     req.session.isAuthenticated = true;
-    res.redirect('index.html'); // Redirect to the index.html page
+    res.redirect('/index.html'); // Redirect to the index.html page
   } else {
     res.redirect('/?error=authentication'); // Redirect back to the login page with an error message
   }
@@ -64,5 +64,6 @@ app.listen(3000, () => {
 function checkCredentials(username, password) {
   // Perform username and password validation
   // Return true if the credentials are valid, false otherwise
-  return  (username === 'admin' && password === 'password');
+  return (username === 'admin' && password === 'password') ||
+    (username === 'specialuser' && password === 'specialpassword');
 }
