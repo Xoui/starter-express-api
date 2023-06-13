@@ -55,11 +55,6 @@ app.get('/index.html', authenticateMiddleware, (req, res) => {
 // Serve static files from the public folder
 app.use(express.static('public'));
 
-// Start the server
-app.listen(3000, () => {
-  console.log('Server is running on port 3000');
-});
-
 // Example authentication logic (replace with your own logic)
 function checkCredentials(username, password) {
   // Perform username and password validation
@@ -67,3 +62,8 @@ function checkCredentials(username, password) {
   return (username === 'admin' && password === 'password') ||
     (username === 'specialuser' && password === 'specialpassword');
 }
+
+// Start the server
+app.listen(3000, () => {
+  console.log('Server is running on port 3000');
+});
