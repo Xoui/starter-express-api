@@ -1,88 +1,85 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Login - Star seeker </title>
-  <style>/* styles.css */
+  <title>Login</title>
+  <style>
+    body {
+      background-color: #f2f2f2;
+      font-family: Arial, sans-serif;
+    }
 
-    /* styles.css */
+    .container {
+      max-width: 400px;
+      margin: 0 auto;
+      padding: 20px;
+      background-color: #fff;
+      border-radius: 5px;
+      box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    }
 
-/* styles.css */
+    .container h2 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
 
-body {
-  font-family: Arial, sans-serif;
-  background: linear-gradient(to bottom, #055dbc, #bd03f1);
-  margin: 0;
-  padding: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-}
+    .form-group {
+      margin-bottom: 15px;
+    }
 
-.container {
-  background-color: #fff;
-  width: 350px; /* Increased width */
-  padding: 30px; /* Increased padding */
-  border-radius: 5px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-}
+    .form-group label {
+      font-weight: bold;
+    }
 
+    .form-group input[type="text"],
+    .form-group input[type="password"] {
+      width: 100%;
+      padding: 8px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
 
+    .form-group button {
+      width: 100%;
+      padding: 8px;
+      border-radius: 5px;
+      background-color: #4CAF50;
+      color: #fff;
+      border: none;
+      cursor: pointer;
+    }
 
-form {
-  display: flex;
-  flex-direction: column;
-}
+    .form-group button:hover {
+      background-color: #45a049;
+    }
 
-label {
-  margin-bottom: 5px;
-  font-weight: bold;
-}
-
-input[type="text"],
-input[type="password"],
-input[type="number"] {
-  width: 100%;
-  padding: 10px;
-  border: 6px solid #0062;
-  border-radius: 3px;
-  margin-bottom: 20px;
-  size-adjust: large;
-}
-
-button {
-  padding: 10px;
-  background-color: #4caf50;
-  color: #fff;
-  border: none;
-  border-radius: 3px;
-  cursor: pointer;
-}
-
-.error-message {
-  color: red;
-  font-size: 14px;
-  margin-top: 10px;
-  text-align: center;
-}
-
-      
-      </style>
+    .error-message {
+      color: red;
+      font-size: 14px;
+      margin-top: 10px;
+    }
+  </style>
 </head>
 <body>
-  
-  <form action="/login" method="POST">
-    <div>
-      <label for="username">Username:</label>
-      <input type="text" id="username" name="username" required>
-    </div>
-    <div>
-      <label for="password">Password:</label>
-      <input type="password" id="password" name="password" required>
-    </div>
-    <div>
-     
-    <button type="submit">Login</button>
-  </form>
+  <div class="container">
+    <h2>Login</h2>
+    <form action="/login" method="POST">
+      <div class="form-group">
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username" required>
+      </div>
+      <div class="form-group">
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required>
+      </div>
+      <div class="form-group">
+        <button type="submit">Login</button>
+      </div>
+      <div class="form-group">
+        <?php if (isset($_GET['error']) && $_GET['error'] === 'authentication'): ?>
+          <p class="error-message">Invalid username or password. Please try again.</p>
+        <?php endif; ?>
+      </div>
+    </form>
+  </div>
 </body>
 </html>
