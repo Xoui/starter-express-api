@@ -12,9 +12,6 @@ app.use(session({
 }));
 
 app.get('/login', (req, res) => {
-    if (req.session.loggedin) {
-        return res.redirect('/index.html');
-    }
     res.sendFile(path.join(__dirname, 'login.html'));
 });
 
@@ -22,9 +19,9 @@ app.post('/login', (req, res) => {
     const username = req.body.username;
     const password = req.body.password;
 
-    if (username === 'admin' && password === 'admin') {
+    if (username === 'admin' && password === 'password') {
         req.session.loggedin = true;
-        return res.redirect('/index.html');
+        res.redirect('/index.html');
     } else {
         res.send('Incorrect Username and/or Password!');
     }
