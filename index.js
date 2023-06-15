@@ -9,12 +9,13 @@ app.use(session({
     secret: 'your_secret_key',
     resave: false,
     saveUninitialized: true,
+    cookie: {
+        maxAge: null // Setting maxAge to null
+    }
 }));
 
 app.get('/login', (req, res) => {
-    if (req.session.loggedin) {
-        return res.redirect('/index.html');
-    }
+    req.session.destroy(); // destroy session
     res.sendFile(path.join(__dirname, 'login.html'));
 });
 
@@ -32,11 +33,16 @@ app.post('/login', (req, res) => {
 });
 
 app.use((req, res, next) => {
-    if (req.session.loggedin) {
+    if (req.session.loggedin || req.path === '/login') {
         next();
     } else {
+        req.session.destroy(); // destroy session
         res.redirect('/login');
     }
+});
+
+app.get('/', (req, res) => {
+    res.redirect('/index.html');
 });
 
 app.get('/index.html', (req, res) => {
