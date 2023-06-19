@@ -2,11 +2,12 @@
   "name": "combined-project",
   "version": "1.0.0",
   "description": "Combined project with multiple dependencies",
-  "main": "index.js",
+  "main": "index.mjs",
   "scripts": {
-    "start": "node index.js"
+    "start": "node index.mjs",
+    "build": "node index.mjs"
   },
-  
+  "type": "module",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/cyclic-software/starter-express-api.git"
@@ -34,6 +35,5 @@
   "engines": {
     "npm": ">=7.0.0",
     "node": ">=16.0.0"
-  },
-  "type": "module"
+  }
 }

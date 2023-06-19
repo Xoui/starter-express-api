@@ -55,11 +55,11 @@ app.get('/index.html', (req, res) => {
   res.sendFile(join(__dirname, 'public', 'index.html'));
 });
 
-app.get('/site/index.html', (req, res) => {
-  res.sendFile(join(__dirname, 'public', 'ultraviolet', 'site', 'index.html'));
+app.get('/Site/index.html', (req, res) => {
+  res.sendFile(join(__dirname, 'public', 'Ultraviolet', 'Site', 'index.html'));
 });
 
-app.use('/ultraviolet', express.static(join(__dirname, 'public', 'ultraviolet')));
+app.use('/Ultraviolet', express.static(join(__dirname, 'public', 'Ultraviolet')));
 
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 8080;
 app.listen(port, () => console.log(`Server is listening on port ${port}`));
